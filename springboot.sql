@@ -173,17 +173,30 @@ create table category(
 SELECT * FROM category;
 -- 상품
 CREATE TABLE book(
-	bno INT AUTO_INCREMENT PRIMARY KEY,	    -- 번호
+	bno INT AUTO_INCREMENT PRIMARY KEY, -- 번호
 	cateId VARCHAR(4) NOT NULL, 			-- 카테고리
 	title VARCHAR(200) NOT NULL, 			-- 도서명
 	content VARCHAR(2000), 					-- 도서설명
 	publish VARCHAR(100), 					-- 출판사
 	author VARCHAR(100), 					-- 저자
 	cost INT NOT NULL, 						-- 가격
-	puser VARCHAR(100), 					-- 판매자id
-	img VARCHAR(100) 						-- 도서이미지
+	puser VARCHAR(100), 						-- 판매자id
+	img VARCHAR(100) 							-- 도서이미지
 );
-	
+
+
+-- 파일(멀티파티, 생성할까말까)	
+CREATE TABLE files(
+	fno INT PRIMARY KEY AUTO_INCREMENT,   							-- 파일번호: 자동발생
+	par INT NOT NULL,   													-- 해당 게시글 번호
+	saveFolder VARCHAR(1000) NOT NULL,								-- 파일 저장 폴더
+	originNm VARCHAR(500) NOT NULL,									-- 파일 원래 이름
+	saveNm VARCHAR(500) NOT NULL,										-- 파일 저장 이름
+	fileType VARCHAR(100) NOT NULL,									-- 파일 확장자
+	uploadDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,	-- 파일 업로드 일자
+	toUse VARCHAR(100) NOT NULL										-- 사용 테이블
+);
+
 
 -- 상품 테이블 생성 ////
 create table product(
