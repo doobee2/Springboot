@@ -9,10 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -27,7 +31,7 @@ public class BookCtrl {
 
 
     @GetMapping("list")
-    public String bookList(HttpServletRequest request, Model model) throws Exception {
+    public String bookList(HttpServletRequest request, Model model, MultipartFile img) throws Exception {
 
         String type = request.getParameter("type");
         String keyword = request.getParameter("keyword");
@@ -70,7 +74,14 @@ public class BookCtrl {
     }
 
     @PostMapping("add")
-    public String bookAddPro(HttpServletRequest request, Model model) throws Exception {
+    public String bookAddPro(HttpServletRequest request, Model model, MultipartFile img) throws Exception {
+
+        String msg = "";
+
+        ServletContext application = request.getSession().getServletContext();
+        //String realPath = application.getRealPath("/resources/upload/lecture");       // 운영 서버
+        String realPath = "D:\\seulbee\\uploadtest";
+
         Book book = new Book();
         book.setTitle(request.getParameter("title"));
         book.setContent(request.getParameter("content"));
@@ -78,6 +89,17 @@ public class BookCtrl {
         book.setPublish(request.getParameter("publish"));
         book.setAuthor(request.getParameter("author"));
         book.setCost(Integer.parseInt(request.getParameter("cost")));
+        book.setImg(request.getParameter("img"));
+        book.setQuality(Integer.parseInt(request.getParameter("quality")));
+
+        if(img != null) {
+            String originalFilename = img.getOriginalFilename();
+            UUID uuid = UUID.randomUUID();
+            String uploadFilename = uuid.toString() + "_" + originalFilename;
+            img.transferTo(new File(realPath, uploadFilename));     //파일 등록
+            book.setImg(uploadFilename);
+        }
+
 
         bookService.bookAdd(book);
 

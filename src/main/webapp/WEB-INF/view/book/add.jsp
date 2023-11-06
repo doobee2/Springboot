@@ -9,45 +9,37 @@
 <body>
 
 
-<form action="${path }/admin/lectAdd.do" name="frm1" method="post" enctype="multipart/form-data">
+<form action="${path }/book/add" name="frm1" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>강의 등록</h5>
+                    <h5>상품 등록</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="floating-label" for="title">강의 제목</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="강의 제목을 입력하세요." aria-describedby="강의 제목 도움" required>
+                                <label class="floating-label" for="title">도서명</label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="도서의 제목을 입력하세요." aria-describedby="도서 제목 도움" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="floating-label" for="subTitle">강의 소제목</label>
-                                <input type="text" class="form-control" name="subTitle" id="subTitle" placeholder="강의 소제목을 입력하세요." aria-describedby="강의 소제목 도움" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="floating-label d-block">해당 과목</label>
+                                <label class="floating-label d-block">도서 상태</label>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="sno1" name="sno" class="custom-control-input" value="1" checked>
-                                    <label class="custom-control-label" for="sno1">수학</label>
+                                    <input type="radio" id="quality1" name="quality" class="custom-control-input" value="1" checked>
+                                    <label class="custom-control-label" for="quality1">상</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="sno2" name="sno" class="custom-control-input" value="2">
-                                    <label class="custom-control-label" for="sno2">영어</label>
+                                    <input type="radio" id="quality2" name="quality" class="custom-control-input" value="2">
+                                    <label class="custom-control-label" for="quality2">중</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="sno3" name="sno" class="custom-control-input" value="3">
-                                    <label class="custom-control-label" for="sno3">기타</label>
+                                    <input type="radio" id="quality3" name="quality" class="custom-control-input" value="3">
+                                    <label class="custom-control-label" for="quality3">하</label>
                                 </div>
                             </div>
                         </div>

@@ -54,11 +54,11 @@
     </select>
     <!-- 도서 입력 -->
     <insert id="bookAdd">
-        insert into book values (default, #{cateId}, #{title}, #{content}, #{publish}, #{author}, #{cost}, #{puser}, #{img})
+        insert into book values (default, #{cateId}, #{title}, #{content}, #{publish}, #{author}, #{cost}, #{puser}, #{img}, #{quality})
     </insert>
     <!-- 도서 수정 -->
     <update id="bookUpdate">
-        update book set cateId=#{cateId}, title=#{title}, content=#{content}, publish=#{publish}, author=#{author}, cost=#{cost}, puser=#{puser}, sno=#{sno}, img=#{img} where bno=#{bno}
+        update book set cateId=#{cateId}, title=#{title}, content=#{content}, publish=#{publish}, author=#{author}, cost=#{cost}, puser=#{puser}, sno=#{sno}, img=#{img}, quality=#{quality} where bno=#{bno}
     </update>
     <!-- 도서 삭제 -->
     <delete id="bookDelete">
