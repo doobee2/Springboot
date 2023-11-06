@@ -164,6 +164,7 @@ CREATE TABLE free(
 -- K:고등문제집, L:고등기타, M:일반교과서, N:일반참고서, O:일반문제집,
 -- P:일반기타, Q:유아콘텐츠, R:유아놀이, S:유아기타, T:해외서적,  U:해외콘텐츠
 
+-- 참고서, 문제집, 자기계발, 에세이, 소설, 기타
 -- 카테고리
 create table category(
 	cateId VARCHAR(4) PRIMARY KEY,
@@ -181,7 +182,25 @@ CREATE TABLE book(
 	author VARCHAR(100), 					-- 저자
 	cost INT NOT NULL, 						-- 가격
 	puser VARCHAR(100), 						-- 판매자id
-	img VARCHAR(100) 							-- 도서이미지
+	img VARCHAR(100),   						-- 도서이미지
+	quality int default 1                   -- 품질(1:상, 2:중, 3:하)
+);
+
+-- 결제
+CREATE TABLE payment(
+    payno INT AUTO_INCREMENT PRIMARY KEY,		    -- 결제 번호 : 자동증가
+    id VARCHAR(20) NOT NULL,                        -- 회원 아이디
+    pno int default 0,                              -- 강의 공유번호
+    plec VARCHAR(100) NOT NULL,                     -- 강의 이름
+    tecnm VARCHAR(100) NOT NULL,                    -- 선생님 이름
+    booknm VARCHAR(100),                            -- 책 교재명
+    pmethod VARCHAR(10),                            -- 결제 방법 - [1:신용카드 | 2:체크카드 | 3:계좌이체]
+    pcom VARCHAR(100),                              -- 결제 대행사
+    pnum VARCHAR(100),                              -- 결제카드(계좌)번호
+    price INT DEFAULT 1000,                         -- 결제 금액
+    amount INT DEFAULT 1,                           -- 결제 수량
+    status INT DEFAULT 0,                           -- 배송상태 - [0:결제완료 | 1:결제완료 | 2:결제취소]
+    resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP()   -- 결제 등록일
 );
 
 
